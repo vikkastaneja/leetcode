@@ -5,12 +5,14 @@ import java.util.Arrays;
 import junit.framework.TestCase;
 
 public class TwoSumSortedArrayTest extends TestCase {
-	private TwoSumSortedArray ts = new TwoSumSortedArray();
+	private TwoSumSortedArray ts;
 	protected void setUp() throws Exception {
 		super.setUp();
+		ts = new TwoSumSortedArray();
 	}
 
 	protected void tearDown() throws Exception {
+		ts = null;
 		super.tearDown();
 	}
 

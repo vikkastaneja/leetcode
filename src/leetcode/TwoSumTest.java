@@ -5,12 +5,14 @@ import java.util.Arrays;
 import junit.framework.*;
 
 public class TwoSumTest extends TestCase {
-	private TwoSum tst = new TwoSum();
+	private TwoSum tst;
 	protected void setUp() throws Exception {
 		super.setUp();
+		tst = new TwoSum();
 	}
 
 	protected void tearDown() throws Exception {
+		tst = null;
 		super.tearDown();
 	}
 

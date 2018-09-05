@@ -11,13 +11,15 @@ import junit.framework.TestCase;
 
 public class TwoSum3DSDesignTest extends TestCase {
 
-	private TwoSum3DSDesign tst = new TwoSum3DSDesign();
+	private TwoSum3DSDesign tst;
 	
 	protected void setUp() throws Exception {
 		super.setUp();
+		tst = new TwoSum3DSDesign();
 	}
 
 	protected void tearDown() throws Exception {
+		tst = null;
 		super.tearDown();
 	}
 
