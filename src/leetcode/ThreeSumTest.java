@@ -110,4 +110,49 @@ public class ThreeSumTest extends TestCase {
 		List<List<Integer>> expected = new ArrayList<>();
 		assertEquals(expected.size(), lst.size());
 	}
+	
+	public void testThreeSumDuplicates() {
+		int[] nums = {-11, -9, 0, 1, 2, 7, 9, 10, -11, 1, 10};
+		List<List<Integer>> lst = tst.threeSum(nums);
+		assertNotNull(lst);
+		List<List<Integer>> expected = new ArrayList<>();
+		
+		expected.add(new ArrayList<Integer>() {
+			{
+				add(-11);
+				add(1);
+				add(10);
+			}
+		});
+		
+		expected.add(new ArrayList<Integer>() {
+			{
+				add(-11);
+				add(2);
+				add(9);
+			}
+		});
+		
+		expected.add(new ArrayList<Integer>() {
+			{
+				add(-9);
+				add(0);
+				add(9);
+			}
+		});
+		
+		expected.add(new ArrayList<Integer>() {
+			{
+				add(-9);
+				add(2);
+				add(7);
+			}
+		});
+		
+		assertEquals(expected.size(), lst.size());
+		assertThat(lst, is(expected));
+		for (int i = 0; i < lst.size(); i++) {
+			assertThat(lst.get(i), is(expected.get(i)));
+		}
+	}
 }

@@ -15,22 +15,30 @@ public class ThreeSum {
 		if (nums == null || nums.length < 3) return null;
 		Arrays.sort(nums);
 		List<List<Integer>> finalList = new ArrayList<>();
-		for (int i = 0; i < nums.length - 3; i++) {
-			int ti = nums[i];
-			for (int j = i + 1, k = nums.length - 1; j < k;) {
-				int tj = nums[j];
-				int tk = nums[k];
-				if (ti + tj + tk == 0) {
-					List<Integer> lst = new ArrayList<>();
-					lst.add(ti);
-					lst.add(tj);
-					lst.add(tk);
-					finalList.add(lst);
-					j++;
-				} else if (ti + tj + tk < 0) {
-					j++;
-				} else {
-					k--;
+		for (int i = 0; i < nums.length - 2; i++) {
+			if (i == 0 || nums[i] > nums[i - 1]) {
+				int ti = nums[i];
+				for (int j = i + 1, k = nums.length - 1; j < k;) {
+					int tj = nums[j];
+					int tk = nums[k];
+					if (ti + tj + tk == 0) {
+						List<Integer> lst = new ArrayList<>();
+						lst.add(ti);
+						lst.add(tj);
+						lst.add(tk);
+						finalList.add(lst);
+						j++;
+						k--;
+						// Handle duplicates
+						while(j<k && nums[j]==nums[j-1])
+						      j++;
+					    while(j<k && nums[k]==nums[k+1])
+						      k--;
+					} else if (ti + tj + tk < 0) {
+						j++;
+					} else {
+						k--;
+					}
 				}
 			}
 		}
