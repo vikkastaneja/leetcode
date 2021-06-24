@@ -16,16 +16,27 @@ public class WildcardMatchingNaive {
     }
     
     private boolean isMatch(String s, String p, int si, int pi) {
-        if (pi == p.length()) return si == s.length();
-        
-        char pc = p.charAt(pi);
-        if (pc == '*') return isMatch(s, p, si, pi + 1) || (si < s.length() && isMatch(s, p, si + 1, pi)) ;
-        
-        if (si < s.length() && (s.charAt(si) == pc || pc == '?') ) {
-	        return isMatch(s, p, si + 1, pi + 1);
+        private boolean isMatchHelper(String s, String p, int si, int pi) {
+        if (s.length() == si && p.length() == pi) return true;
+        if (s.length() == si && pi < p.length()) {
+            for (int i = pi; i < p.length(); i++) {
+                if (p.charAt(i) != '*') return false;
+            }
+            
+            return true;
         }
         
-        return false;
+        if (p.length() == pi && si < s.length()) return false;
+
+        if (p.charAt(pi) != '*') {
+            if (p.charAt(pi) == s.charAt(si) || p.charAt(pi) == '?')
+                return isMatchHelper(s, p, si + 1, pi + 1);
+            else return false;
+        } else {
+            return isMatchHelper(s, p, si+1, pi) || isMatchHelper(s, p, si, pi + 1);
+        }
+		
+    }
     }
     
 }
